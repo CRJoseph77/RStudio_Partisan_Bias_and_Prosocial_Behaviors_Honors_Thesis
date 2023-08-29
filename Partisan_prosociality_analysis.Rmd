@@ -1,0 +1,458 @@
+---
+title: "Thesis Data"
+author: "Cole Joseph"
+date: "February 24, 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library("psych")
+library("tidyverse")
+library("knitr")
+```
+
+
+```{r data}
+d <- read.csv("C:/Users/CRJos/Desktop/Thesis Analyses/cj_thesis_data.csv")
+
+
+```
+
+
+```{r e only dataframe}
+
+#Engager Only
+
+#With control
+
+e <- d[which(d$TaskCondition =="engager"),]
+
+table(as.factor(e$PartisanCondition))
+
+e <- e[-143,]
+#Categorical ACO
+
+#median above scale midpoint, scores on median included in "high"
+
+median(e$ACO)
+
+describe(e$ACO)
+#Medain above scale midpoint, scores on median included in "high"
+e$catACO <- cut(e$ACO, breaks = c(0,3.7,5), labels = c("low","high"))
+
+e$catACO
+
+table(as.factor(e$catACO))
+
+table(as.factor(e$ACO == "3.7"))
+
+#Cat AHO
+median(e$AHO)
+
+describe(e$AHO)
+#Median above scale midpoint, scores on median included in "high"
+e$catAHO <- cut(e$AHO, breaks = c(0,4.24,5), labels = c("low","high"))
+
+table(as.factor(e$AHO == "4.24"))
+
+#Cat AO
+e$ACHO <- (e$ACO + e$AHO)/2
+
+median(e$ACHO, na.rm = T)
+
+describe(e$ACHO)
+#Medain above scale midpoint, scores on median included in "high"
+e$catAO <- cut(e$ACHO, breaks = c(0,4.075,5), labels = c("low","high"))
+
+e$catAO <- cut(e$AO, breaks = c(-5,.04,5), labels = c("low","high"))
+e$catAO
+
+table(as.factor(e$catAO))
+
+table(as.factor(e$catAO == "4.075"))
+
+```
+
+```{r}
+#Descriptive statistics Engagers Only
+
+#With Control
+describe(e$rawLetters)
+describe(e$rawTime)
+
+hist(e$rawLetters)
+hist(e$rawTime)
+
+describeBy(e$rawLetters, list(e$PartisanCondition))
+describeBy(e$rawLetters, list(e$catACO))
+describeBy(e$rawLetters, list(e$catAHO))
+
+describeBy(e$rawTime, list(e$PartisanCondition))
+describeBy(e$rawTime, list(e$catACO))
+describeBy(e$rawTime, list(e$catAHO))
+```
+
+```{r Desrciptive Stats}
+#Descriptive Stats e (engagers only)
+#demographics
+nrow(e)
+
+table(as.factor(e$gender))
+
+describe(e$age)
+
+table(as.factor(e$TaskCondition))
+
+table(as.factor(e$PartisanCondition))
+
+table(as.factor(e$pParty))
+     
+hist(e$PartisanCondition)
+
+hist(e$pParty)
+
+#DVs
+describe(e$rawLetters)
+
+describe(e$rawTime)
+
+hist(e$rawLetters)
+
+hist(e$rawTime)
+
+describe(e$AHO)
+
+describe(e$ACO)
+
+hist(e$AHO)
+
+hist(e$ACO)
+
+#Descriptive stats by condition
+
+describeBy(e$rawLetters, list(e$PartisanCondition))
+
+describeBy(e$rawTime, list(e$TaskCondition))
+
+describeBy(e$rawTime, list(e$PartisanCondition))
+
+describeBy(e$rawLetters, list(e$catAO))
+
+plot(e$AHO ~e$ ACO) + abline(lm(e$AHO~e$ACO))
+
+cor.test(e$ACO, e$AHO)
+```
+
+```{r Mean tables}
+#Mean Tables
+describe(e$rawLetters[e$PartisanCondition == "Co"][e$catACO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Co"][e$catACO == "high"])
+describe(e$rawLetters[e$PartisanCondition == "Counter"][e$catACO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Counter"][e$catACO == "high"])
+describe(e$rawLetters[e$PartisanCondition == "Ctrl"][e$catACO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Ctrl"][e$catACO == "high"])
+
+describe(e$rawLetters[e$PartisanCondition == "Co"][e$catAHO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Co"][e$catAHO == "high"])
+describe(e$rawLetters[e$PartisanCondition == "Counter"][e$catAHO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Counter"][e$catAHO == "high"])
+describe(e$rawLetters[e$PartisanCondition == "Ctrl"][e$catAHO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Ctrl"][e$catAHO == "high"])
+
+describe(e$rawTime[e$PartisanCondition == "Co"][e$catACO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Co"][e$catACO == "high"])
+describe(e$rawTime[e$PartisanCondition == "Counter"][e$catACO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Counter"][e$catACO == "high"])
+describe(e$rawTime[e$PartisanCondition == "Ctrl"][e$catACO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Ctrl"][e$catACO == "high"])
+
+describe(e$rawTime[e$PartisanCondition == "Co"][e$catAHO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Co"][e$catAHO == "high"])
+describe(e$rawTime[e$PartisanCondition == "Counter"][e$catAHO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Counter"][e$catAHO == "high"])
+describe(e$rawTime[e$PartisanCondition == "Ctrl"][e$catAHO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Ctrl"][e$catAHO == "high"])
+
+describe(e$rawLetters[e$PartisanCondition == "Co"][e$catAO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Co"][e$catAO == "high"])
+describe(e$rawLetters[e$PartisanCondition == "Counter"][e$catAO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Counter"][e$catAO == "high"])
+describe(e$rawLetters[e$PartisanCondition == "Ctrl"][e$catAO == "low"])
+describe(e$rawLetters[e$PartisanCondition == "Ctrl"][e$catAO == "high"])
+
+describe(e$rawTime[e$PartisanCondition == "Co"][e$catAO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Co"][e$catAO == "high"])
+describe(e$rawTime[e$PartisanCondition == "Counter"][e$catAO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Counter"][e$catAO == "high"])
+describe(e$rawTime[e$PartisanCondition == "Ctrl"][e$catAO == "low"])
+describe(e$rawTime[e$PartisanCondition == "Ctrl"][e$catAO == "high"])
+```
+
+#Inferential Stats
+
+```{r Preliminary Inferential Stats}
+summary(aov(e$rawLetters ~ e$PartisanCondition + e$catACO + e$PartisanCondition*e$catACO))
+
+summary(aov(e$rawTime ~ e$PartisanCondition + e$catACO + e$PartisanCondition*e$catACO))
+
+summary(aov(e$rawLetters ~ e$PartisanCondition + e$catAHO + e$PartisanCondition*e$catAHO))
+
+summary(aov(e$rawTime ~ e$PartisanCondition + e$catAHO + e$PartisanCondition*e$catAHO))
+
+summary(lm(e$rawTime ~ e$PartisanCondition))
+
+```
+
+```{r lm analyses}
+#Inferential Analyses
+e$cond1 <- (0)*(e$PartisanCondition == "Ctrl") +
+(-.5)*(e$PartisanCondition == "Counter") +
+(0.5)*(e$PartisanCondition == "Co")
+
+e$cond2 <- (.67)*(e$PartisanCondition == "Ctrl") +
+  (-.33)*(e$PartisanCondition == "Counter") +
+  (-.33)*(e$PartisanCondition == "Co")
+
+e$party1 <- (0)*(e$pParty == "Independent") +
+  (-.5)*(e$pParty == "Republican") +
+  (0.5)*(e$pParty == "Democrat")
+
+e$party2 <- (0.66)*(e$pParty == "Independent") +
+  (-.33)*(e$pParty == "Republican") +
+  (-.33)*(e$pParty == "Democrat")
+
+e$gender1 <- (-0.5)*(e$gender == "Male") + (0.5)*(e$gender == "Female") +
+  (0)*(e$gender == "Other")
+
+e$AO <- ((scale(e$ACO, center = T, scale = F) + scale(e$AHO, center = T, scale = F)))/2
+
+view(e)
+#Time
+#   Condition and ACO
+summary(lm(e$rawLetters ~ e$cond1*scale(e$ACO, center = T, scale = F) + e$cond2*scale(e$ACO, center = T, scale = F) +e$cond1*scale(e$AHO, center = T, scale = F) + e$cond2*scale(e$AHO, center = T, scale = F)))
+
+summary(lm(e$rawLetters ~ e$cond1*scale(e$AHO, center = T, scale = F) + e$cond2*scale(e$AHO, center = T, scale = F)))
+
+summary(lm(e$rawLetters ~ e$cond1*e$AO + e$cond2*e$AO))
+
+summary(lm(e$rawLetters ~ e$cond1*e$AO + e$cond2*e$AO + e$party1*e$AO + e$party2*e$AO))
+
+summary(lm(e$rawTime ~ e$cond1*e$AO + e$cond2*e$AO + e$party1*e$AO + e$party2*e$AO))
+
+#   Condition and AHO
+summary(lm(e$rawTime ~ e$cond1*e$AHO + e$cond2*e$AHO))
+#   Condition, ACO and AHO
+summary(lm(e$rawTime ~ e$cond1*e$AHO + e$cond2*e$AHO +
+             e$cond1*e$ACO + e$cond2*e$ACO + e$ACO*e$AHO))
+#   Condition and Party and ACO
+summary(lm(e$rawTime ~ e$cond1*e$ACO + e$cond2*e$ACO + 
+             e$party1*e$ACO + e$party2*e$ACO))
+#   Condition and Party and ACO
+summary(lm(e$rawTime ~ e$cond1*e$AHO + e$cond2*e$AHO + 
+             e$party1*e$AHO + e$party2*e$AHO))
+#   Adding Gender(?) ACO
+summary(lm(e$rawTime ~ e$cond1*e$ACO + e$cond2*e$ACO + 
+             e$party1*e$ACO + e$party2*e$ACO + e$gender1))
+#   Adding Gender(?) AHO
+summary(lm(e$rawTime ~ e$cond1*e$AHO + e$cond2*e$AHO + 
+             e$party1*e$AHO + e$party2*e$AHO + e$gender1))
+#LETTERS
+#   Condition and ACO
+summary(lm(e$rawLetters ~ e$cond1*e$ACO + e$cond2*e$ACO))
+#   Condition and AHO
+summary(lm(e$rawLetters ~ e$cond1*e$AHO + e$cond2*e$AHO))
+#   Condition, ACO and AHO
+summary(lm(e$rawLetters ~ e$cond1*e$AHO + e$cond2*e$AHO +
+             e$cond1*e$ACO + e$cond2*e$ACO + e$ACO*e$AHO))
+#   Condition and Party and ACO
+summary(lm(e$rawLetters ~  e$cond1*e$ACO +  e$cond2*e$ACO + 
+             e$party1*e$ACO + e$party2*e$ACO))
+#   Condition and Party and AHO
+summary(lm(e$rawLetters ~  e$cond1*e$AHO +  e$cond2*e$AHO + 
+             e$party1*e$AHO + e$party2*e$AHO))
+#   Adding Gender(?) ACO
+summary(lm(e$rawLetters ~ e$cond1*e$ACO + e$cond2*e$ACO + 
+             e$party1*e$ACO + e$party2*e$ACO + e$gender1))
+#   Adding Gender(?) AHO
+summary(lm(e$rawLetters ~ e$cond1*e$AHO + e$cond2*e$AHO + 
+             e$party1*e$AHO + e$party2*e$AHO + e$gender1))
+
+```
+
+```{r Dummy Codes + Model}
+
+m1c <- (lm(e$rawLetters ~ e$cond1*e$AO + e$cond2*e$AO))
+summary(m1c)
+
+#main effect of AO is qualitifed by interaction that becomes greater with interaction
+
+e$co1 <- ifelse(e$PartisanCondition == "Counter", 1, 0)
+e$co2 <- ifelse(e$PartisanCondition == "Ctrl", 1, 0)
+
+m1d <- (lm(e$rawLetters ~ e$co1*e$AO + e$co2*e$AO))
+summary(m1d)
+
+e$count1 <- ifelse(e$PartisanCondition == "Co", 1, 0)
+e$count2 <- ifelse(e$PartisanCondition == "Ctrl", 1, 0)
+
+m1d2 <- (lm(e$rawLetters ~ e$count1*e$AO + e$count2*e$AO))
+summary(m1d2)
+
+e$ctrl1 <- ifelse(e$PartisanCondition == "Co", 1, 0)
+e$ctrl2 <- ifelse(e$PartisanCondition == "Counter", 1, 0)
+
+m1d3 <- (lm(e$rawLetters ~ e$ctrl1*e$AO + e$ctrl2*e$AO))
+summary(m1d3)
+
+m2c <- (lm(e$rawTime ~ e$cond1*e$AO + e$cond2*e$AO))
+summary(m2c)
+
+mgc <- (lm(e$rawLetters ~ e$cond1*e$AO + e$cond2*e$AO + e$gender1*e$AO))
+summary(mgc)
+
+t.test(e$rawLetters ~ e$gender)
+
+e$catAOm <- cut(e$AO, breaks = c(-5,0,5), labels = c("low","high"))
+
+describeBy(e$rawLetters, e$catAOm)
+
+
+e$catAOsm <- cut(e$AO, breaks = c(-5,-.48,.52,5), labels = c("low","mean","high"))
+
+table(e$catAOsm)
+
+describe(e$rawLetters [e$PartisanCondition == "Counter"][e$catAOsm == "low"])
+
+describe(e$rawLetters [e$PartisanCondition == "Counter"][e$catAOsm == "high"])
+
+```
+
+```{r Chronbachs}
+
+a <- read.csv(file.choose(), header = T)
+
+
+ah <- a %>%
+  select(starts_with("Q61")) %>%
+  mutate(Q61_1 = fct_recode(Q61_1,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree")) %>% 
+  mutate(Q61_2 = fct_recode(Q61_2,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree")) %>%
+  mutate(Q61_3 = fct_recode(Q61_3,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree")) %>%
+  mutate(Q61_4 = fct_recode(Q61_4,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree")) %>%
+    
+ac <- a %>% select(starts_with("Q62")) %>%
+ mutate(Q62_1 = fct_recode(Q62_1,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree")) %>% 
+  mutate(Q62_2 = fct_recode(Q62_2,
+                             "5" = "Strongly Disagree",
+                             "4" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "2" = "Agree",
+                            "1" = "Strongly Agree")) %>%
+  mutate(Q62_3 = fct_recode(Q62_3,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree")) %>%
+  mutate(Q62_4 = fct_recode(Q62_4,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree")) %>%
+  mutate(Q62_5 = fct_recode(Q62_5,
+                             "1" = "Strongly Disagree",
+                             "2" = "Disagree",
+                             "3" = "Neither agree nor disagree",
+                            "4" = "Agree",
+                            "5" = "Strongly Agree"))
+
+
+aca <- cbind(ac, ah)
+
+psych::alpha(ac, na.rm = T)
+?psych::alpha
+```
+
+
+
+
+```{r just co counter}
+#Making only Co and Counter
+
+co <- d[which(d$PartisanCondition == "Co"),]
+
+counter <- d[which(d$PartisanCondition == "Counter"),]
+
+cocounter <- rbind(co, counter)
+
+ecc <- cocounter[which(cocounter$TaskCondition == "engager"),]
+
+ecc$catACO <- cut(ecc$ACO, breaks = c(0,3.7,5), labels = c("low","high"))
+
+ecc$catAHO <- cut(ecc$AHO, breaks = c(0,4.24,5), labels = c("low","high"))
+
+```
+
+
+```{r t tests}
+
+t.test(ecc$rawLetters ~ ecc$catACO, var.equal = TRUE)
+
+t.test(ecc$rawTime ~ ecc$catACO, var.equal = TRUE)
+
+t.test(ecc$rawLetters ~ ecc$catAHO, var.equal = TRUE)
+
+t.test(ecc$rawTime ~ ecc$catAHO, var.equal = TRUE)
+
+t.test(ecc$rawLetters ~ecc$PartisanCondition, var.equal = TRUE)
+
+t.test(ecc$rawTime ~ ecc$PartisanCondition, var.equal = TRUE)
+
+ecc$cond1cc <- (-.5)*(ecc$PartisanCondition == "Counter") +
+(0.5)*(ecc$PartisanCondition == "Co")
+#     Letters Condition ACO
+summary(lm(ecc$rawLetters ~ ecc$cond1cc*ecc$ACO))
+#     Letters Condition AHO
+summary(lm(ecc$rawLetters ~ ecc$cond1cc*ecc$AHO))
+#     Time Condition ACO
+summary(lm(ecc$rawTime~ ecc$cond1cc*ecc$ACO))
+#     Time Condition AHO
+summary(lm(ecc$rawTime ~ ecc$cond1cc*ecc$AHO))
+
+```
+
+```{r new anovas}
+
+summary(aov(e$rawLetters ~ e$PartisanCondition*e$catAO))
+
+summary(aov(e$rawTime ~ e$PartisanCondition*e$catAO))
+
+```
+
