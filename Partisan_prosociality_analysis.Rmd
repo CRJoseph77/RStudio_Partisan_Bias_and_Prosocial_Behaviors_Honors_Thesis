@@ -15,7 +15,7 @@ library("knitr")
 
 
 ```{r data}
-d <- read.csv("C:/Users/CRJos/Desktop/Thesis Analyses/cj_thesis_data.csv")
+d <- read.csv("C:/Users/data.csv")
 
 
 ```
