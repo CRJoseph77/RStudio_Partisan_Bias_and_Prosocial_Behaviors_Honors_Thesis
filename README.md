@@ -14,7 +14,8 @@ Data was collected from undergraduates at the University of Colorado, Boulder an
 
 # Installation and Setup
 ## Codes and Resources Used
-Editor Used: Data analysis for this project was performed in R Studio. 
+Editor Used: Data analysis for this project was performed in R Studio.
+
 R packages used: Psych, knitr, tidyverse.
 
 # Data
