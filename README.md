@@ -1,4 +1,5 @@
 # Analyzing How Attitudes Affect the Relationship Between Partisan Bias and Prosocial Behavior
+Exploring whether or not attitudes toward helping others or attitudes toward charitable organizations influence the relationship between partisan bias and prosocial behavior.
 
 # Project Overview
 This project features segments of my Honors Thesis project completed in the spring of 2019 at the University of Colorado, Boulder. This study examines the relationship between partisan bias and prosocial behaviors. 
@@ -11,7 +12,7 @@ The independent variables included whether a fictional sponsor organization for 
 
 Data was collected from undergraduates at the University of Colorado, Boulder and analyzed in R Studio. Data was filtered into data frames with only the relevant data and then analyzed. Two-way ANOVAs were conducted to assess whether or not there were significant differences in time spent on the task or the amount of the task completed between participants in different groups of the independent variables. Linear regressions were conducted to further examine these relationships and assess to what extent independent variable conditions as well as demographic factors influenced scores on the outcome variables. T-tests were also conducted to evaluate if there was a difference in the dependent variables between the co-partisan and counter-partisan conditions.
 
-# Installation and setup
+# Installation and Setup
 ## Codes and Resources Used
 Editor Used: Data analysis for this project was performed in R Studio. 
 R packages used: Psych, knitr, tidyverse.
@@ -23,7 +24,7 @@ Source data: The data used for this project was collected from undergraduates at
 
 Preprocessing: The data was cleaned by another member of the lab before it was uploaded to R Studio for analysis. 
 
-# Code structure
+# Code Structure
 1. Uploading data and preparing data frames - The cleaned data was uploaded to R Studio and filtered to create data frames containing only data relevant to this project.
    
 2. Data transformation - ACO and AHO scores were split into ‘high’ and ‘low’ categories based on whether they were above or below the median.
@@ -40,7 +41,7 @@ Preprocessing: The data was cleaned by another member of the lab before it was u
 
 8. T-tests - Data was filtered to exclude participants in the control condition. Then scores on the dependent variables were compared between participants in the co-partisan and counter-partisan condition using two-sample independent t-tests.
 
-# Results and evaluation
+# Results and Evaluation
 My analysis revealed that ACO and AHO scores did relate to prosocial behaviors. Furthermore, I discovered that ACO and AHO did, in fact, moderate the relationship between partisan bias and prosocial behavior. People with lower ACO/AHO scores exhibited more prosocial behavior toward counter-partisans and people with higher ACO/AHO scores exhibited similar amounts of prosocial behavior toward co-partisans as counter-partisans.
 
 # References
