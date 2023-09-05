@@ -27,7 +27,7 @@ Source data: The data used for this project was collected from undergraduates at
 
 Preprocessing: The data was cleaned by another member of the lab before it was uploaded to R Studio for analysis. 
 
-# Code Structure
+# [Code Structure](Partisan_prosociality_analysis.Rmd)
 *The attached R Studio code is for illustrative purposes and unfortunately, cannot be executed without the original data. It is the exact code used to obtain the results discussed elsewhere in this project.*
 
 1. Uploading data and preparing data frames - The cleaned data was uploaded to R Studio and filtered to create data frames containing only data relevant to this project.
