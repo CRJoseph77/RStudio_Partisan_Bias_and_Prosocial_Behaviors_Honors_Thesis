@@ -43,7 +43,7 @@ Preprocessing: The data was cleaned by another member of the lab before it was u
 8. T-tests - Data was filtered to exclude participants in the control condition. Then scores on the dependent variables were compared between participants in the co-partisan and counter-partisan condition using two-sample independent t-tests.
 
 # Results and Evaluation
-A full exploration of the analysis results can be found [here](https://github.com/CRJoseph77/Thesis/blob/570034ae0ed4b7106dee70ce1aa9638ef3aa3537/3.%20Results.pdf).
+A full exploration of the analysis results can be found [here](https://github.com/CRJoseph77/Thesis/blob/570034ae0ed4b7106dee70ce1aa9638ef3aa3537/3.%20Results.pdf) and visualizations of the results can be found [here](https://github.com/CRJoseph77/Thesis/blob/ff3674d9e31558932d3fe7aa4eda66145539960f/Visualizations.pdf).
 
 My analysis revealed that ACO and AHO scores did relate to prosocial behaviors. Furthermore, I discovered that ACO and AHO did, in fact, moderate the relationship between partisan bias and prosocial behavior. People with lower ACO/AHO scores exhibited more prosocial behavior toward counter-partisans and people with higher ACO/AHO scores exhibited similar amounts of prosocial behavior toward co-partisans as counter-partisans.
 
