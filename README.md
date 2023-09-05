@@ -1,3 +1,5 @@
+![](CU_Thesis_coverphoto.PNG)
+
 # Analyzing How Attitudes Affect the Relationship Between Partisan Bias and Prosocial Behavior
 Do attitudes toward helping others or attitudes toward charitable organizations influence partisan bias in prosocial behaviors?
 
