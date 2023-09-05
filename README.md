@@ -46,5 +46,5 @@ Preprocessing: The data was cleaned by another member of the lab before it was u
 My analysis revealed that ACO and AHO scores did relate to prosocial behaviors. Furthermore, I discovered that ACO and AHO did, in fact, moderate the relationship between partisan bias and prosocial behavior. People with lower ACO/AHO scores exhibited more prosocial behavior toward counter-partisans and people with higher ACO/AHO scores exhibited similar amounts of prosocial behavior toward co-partisans as counter-partisans.
 
 # References
-A list of references for this project can be viewed [here]
+A list of references for this project can be viewed [here](https://github.com/CRJoseph77/Thesis/blob/570034ae0ed4b7106dee70ce1aa9638ef3aa3537/4.%20References.pdf).
 
